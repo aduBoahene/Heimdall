@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+
+# Build directories
+build/
+dist/
+*.log
+
+# Environment variables
+.env
+
+# Sequelize files
+sequelize-*.json
+
+# Editor and IDE files
+.vscode/
+.idea/
+
+# Other files and directories
+.DS_Store
+Thumbs.db
+logs/
+*.pid
