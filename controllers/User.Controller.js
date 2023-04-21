@@ -43,7 +43,7 @@ exports.login = async (req, res) => {
 				email: email
 			}
 		})
-		if (!user) {
+		if (user === null) {
 			return res.status(400).send({
 				_msg: `User with email ${email} does not exist`,
 				data: null,
@@ -53,7 +53,7 @@ exports.login = async (req, res) => {
 
 		var passwordIsValid = bcrypt.compareSync(password, user.password);
 		if (!passwordIsValid) {
-			res.status(404).send({
+			return res.status(404).json({
 				_msg: `Invalid Credentials`,
 				data: null,
 				error: null
@@ -68,14 +68,14 @@ exports.login = async (req, res) => {
 			expiresIn: 86400
 		});
 
-		res.status(200).send({
+		return res.status(200).json({
 			_msg: `Login Succesful`,
 			error: null,
 			auth: true, accessToken: token
 		});
 	} catch (error) {
 		console.log(error)
-		res.status(500).json({
+		return res.status(500).json({
 			_msg: `Invalid Credentials`,
 			data: null,
 			error: error.message

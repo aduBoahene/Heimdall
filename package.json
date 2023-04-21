@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "node server.js",
+	"migrate": "sequelize db:migrate",
+	"seed":"sequelize db:seed:all"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -18,3 +20,5 @@
     "sequelize-cli": "^6.6.0"
   }
 }
+
+

@@ -14,14 +14,14 @@ function verifyToken(req, res, next) {
 
 		jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
 			if (err)
-				return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+				return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
 
 			// if everything good, save to request for use in other routes
 			req.username = decoded.username;
 			next();
 		});
 	} catch (err) {
-		res.status(401).json({
+		return res.status(401).json({
 			_msg: "You are not authorized. Login First",
 			data: null,
 			error: err.message,
