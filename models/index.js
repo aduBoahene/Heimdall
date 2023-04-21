@@ -1,20 +1,45 @@
 'use strict';
-
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+// const config = require(__dirname + '/../config/config.json')[env];
+const config = require('../config/config')
 const db = {};
 
+
+console.log("config de")
+
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+// if (config.use_env_variable) {
+//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+// } else {
+// 	sequelize = new Sequelize(config.database, config.username, config.password, config);
+// 	// sequelize = new Sequelize(config.database, config.username, config.password, config, {
+// 	// 	port: config.port,
+// 	// 	dialect:config.dialect
+// 	// });
+// }
+
+if (process.env.NODE_ENV === 'development') {
+	// code for development environment
+	sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, {
+		host: config.development.host,
+		dialect: config.development.dialect,
+		port: config.development.port
+	  });
+  } else if (process.env.NODE_ENV === 'test') {
+	// code for test environment
+  } else if (process.env.NODE_ENV === 'production') {
+	// code for production environment
+  } else {
+	console.error('Unknown environment:', process.env.NODE_ENV);
+	process.exit(1);
+  }
+
 
 fs
   .readdirSync(__dirname)
