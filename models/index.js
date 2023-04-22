@@ -14,15 +14,6 @@ const db = {};
 console.log("config de")
 
 let sequelize;
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-// } else {
-// 	sequelize = new Sequelize(config.database, config.username, config.password, config);
-// 	// sequelize = new Sequelize(config.database, config.username, config.password, config, {
-// 	// 	port: config.port,
-// 	// 	dialect:config.dialect
-// 	// });
-// }
 
 if (process.env.NODE_ENV === 'development') {
 	// code for development environment
@@ -33,8 +24,19 @@ if (process.env.NODE_ENV === 'development') {
 	  });
   } else if (process.env.NODE_ENV === 'test') {
 	// code for test environment
+	 sequelize = new Sequelize({
+		dialect: 'sqlite',
+		storage: path.join('mydatabase.sqlite'),
+		logging:false
+	  });
+	
   } else if (process.env.NODE_ENV === 'production') {
 	// code for production environment
+	sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, {
+		host: config.development.host,
+		dialect: config.development.dialect,
+		port: config.development.port
+	  });
   } else {
 	console.error('Unknown environment:', process.env.NODE_ENV);
 	process.exit(1);
