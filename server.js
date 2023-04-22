@@ -7,7 +7,7 @@ const db = require("./models");
 const bodyparser = require('body-parser')
 
 //Body-parser middleware
-app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 
 const UserRoute = require("./Router/User.Route");
@@ -20,9 +20,21 @@ app.use("/api/appLink", AppLinkRoute);
 
 
 //database connection
-db.sequelize.sync().then(req =>{ 
-    app.listen(PORT , ()=>{
-        console.log(`App started on ${PORT}`)
-    })
-});
+// db.sequelize.sync().then(req => {
+// 	app.listen(PORT, async () => {
+// 		await console.log(`App started on ${PORT}`)
+// 	})
+// });
+
+(async () => {
+	try {
+	  await db.sequelize.sync();
+	  app.listen()
+	} catch (error) {
+	  console.error(error);
+	}
+  })();
+  
+
+module.exports = app
 
