@@ -8,7 +8,7 @@
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "dev": "cross-env NODE_ENV=development node server.js",
-    "test": "cross-env NODE_ENV=test jest && sequelize db:seed:all --detectOpenHandles --testTimeout=30000"
+    "test": "cross-env NODE_ENV=test jest && sequelize db:seed:all --detectOpenHandles"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -21,6 +21,7 @@
     "sequelize": "^6.31.0",
     "sequelize-cli": "^6.6.0",
     "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^4.6.2",
     "yup": "^1.1.1"
   },
   "devDependencies": {
@@ -36,4 +37,3 @@
     ]
   }
 }
-

@@ -11,7 +11,6 @@ const config = require('../config/config')
 const db = {};
 
 
-console.log("config de")
 
 let sequelize;
 

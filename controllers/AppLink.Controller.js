@@ -1,4 +1,6 @@
 const { appLink } = require('../models')
+const schema = require('../Util/ValidationSchema')
+
 
 
 
@@ -21,6 +23,7 @@ exports.getAllLinks = async (req, res) => {
 exports.createAppLink = async (req, res) => {
 	try {
 		const { name, icon, url } = req.body
+		await schema.createAppLinkSchema.validate(req.body);
 
 		const link = await appLink.create({ name, icon, url })
 
