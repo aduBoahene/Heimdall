@@ -1,0 +1,6 @@
+Sample Login Account
+	-email = jane@example.com
+	-password = 12345
+
+ - I started a docker container to run the mysql database. Connection can be found in the env-sample file
+ - Api documentation can be found here https://documenter.getpostman.com/view/11910081/TzCQaRhB#7b2ae958-384c-4826-b3df-00f954f2dd71
