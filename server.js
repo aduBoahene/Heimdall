@@ -1,7 +1,7 @@
 
 const express = require('express')
 const app = express()
-const PORT = process.env.port || 8899
+const PORT = process.env.APP_PORT || 9898
 const db = require("./models");
 
 const bodyparser = require('body-parser')
@@ -35,17 +35,17 @@ db.sequelize.authenticate()
 // 	})
 // });
 
-(async () => {
-	try {
-	  await db.sequelize.sync();
-	  app.listen()
-	   //app.listen(PORT, () => {
-		// console.log(`App started on ${PORT}`);
-	   //});
-	} catch (error) {
-	  console.error(error);
-	}
-  })();
+// (async () => {
+// 	try {
+// 	  await db.sequelize.sync();
+// 	  //app.listen()
+// 	   app.listen("9898", () => {
+// 		console.log(`App started on 9898`);
+// 	   });
+// 	} catch (error) {
+// 	  console.error(error);
+// 	}
+//   })();
 
 //   app.listen(PORT, () => {
 // 		console.log(`App started on ${PORT}`);

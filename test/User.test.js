@@ -32,7 +32,7 @@ describe('CREATE USER', (done) => {
 		const userData = {
 			name: 'Ama Doe',
 			email: 'ama@example.com',
-			password: '12345678'
+			password: 'Ab@12345'
 		};
 
 		// Create a JWT token with a secret key and a payload

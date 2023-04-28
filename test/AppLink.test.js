@@ -10,6 +10,8 @@ describe('GET LINKS ENDPOINT', () => {
 		const res = await request(app).get('/api/appLink/getAllLinks')
 		expect(res.statusCode).toEqual(200)
 		expect(res.body).toHaveProperty('data')
+		expect(res.body).toHaveProperty('_msg')
+		expect(res.body).toHaveProperty('error')
 	})
 })
 
@@ -20,7 +22,7 @@ describe('CREATE LINK', () => {
 		const linkData = {
 			name: 'Ama Doe',
 			icon: 'ama@example.com',
-			url: '12345'
+			url: '12345678'
 		};
 
 		// Create a JWT token with a secret key and a payload
